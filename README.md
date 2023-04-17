@@ -47,6 +47,29 @@ The following are subsequent models' archituectures:
 - Fifth model is absolutely our top performer in all metrics. We will choose it as our final model for deployment.
 
 ## Evaluation
+### Final Model's Training History and Performance on Test Data
+![image](https://user-images.githubusercontent.com/122312679/232551184-84214a15-8aa0-4b62-bf92-c19d4790c8c6.png)
+![image](https://user-images.githubusercontent.com/122312679/232551233-b97d0b93-d3d5-4c7a-9f91-0cdc638ba05a.png)
+- The model's performance are equally near-perfect on training, validation and test data sets.
+- The model's performance picked up and stayed steady for minor improvements since the third epoch.
+- Results on test data are very impressive.
+
+
+### Final Model's Detailed Architecture
+This model has 12 layers in total:
+1. (Input Layer) VGG16 convolutional base layer
+2. (Hidden Layer) Flatten layer
+3. (Hidden Layer) Dense layer with 512 neurons and ReLU activation function
+4. (Hidden Layer) Batch normalization layer
+5. (Hidden Layer) Dropout layer with a rate of 0.5
+6. (Hidden Layer) Dense layer with 256 neurons and ReLU activation function
+7. (Hidden Layer) Batch normalization layer
+8. (Hidden Layer) Dropout layer with a rate of 0.5
+9. (Hidden Layer) Dense layer with 128 neurons and ReLU activation function
+10. (Hidden Layer) Batch normalization layer
+11. (Hidden Layer) Dropout layer with a rate of 0.5
+12. (Output Layer) Dense output layer with a single neuron and sigmoid activation function.
+
 ### Final Model's Errors on Test Data
 It's important to individually review the final model's errors to see if there is any pattern. Also this can lead to unexpected insights for improving the final model.
 
