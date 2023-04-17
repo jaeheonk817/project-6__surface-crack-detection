@@ -56,7 +56,7 @@ The following are subsequent models' archituectures:
 
 
 ### Final Model's Detailed Architecture
-This model has 12 layers in total:
+This model has 12 layers in total (10 hidden layers):
 1. (Input Layer) VGG16 convolutional base layer
 2. (Hidden Layer) Flatten layer
 3. (Hidden Layer) Dense layer with 512 neurons and ReLU activation function
