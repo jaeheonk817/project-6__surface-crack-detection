@@ -33,7 +33,7 @@ The overall accuracy of a model is undoubtedly crucial, but it's important to co
 
 
 ## Evaluation
-### Final Model's Errrors
+### Final Model's Errors on Test Data
 It's important to individually review the final model's errors to see if there is any pattern. Also this can lead to unexpected insights for improving the final model.
 
 ![image](https://user-images.githubusercontent.com/122312679/232531778-83b493a9-e7d6-4938-8c49-2811c295c39c.png)
@@ -46,3 +46,43 @@ It's important to individually review the final model's errors to see if there i
 - `False Negative 3` seemingly has no crack, or maybe a very slight one. This is hard to notice.
 - `False Negatives 2, 4, 5` all have crackes on the edge of their images. The model needs to be trained on such occasions since 60% of false negative errors are this type.
 
+### Deployment
+During deployment of a computer vision application using Streamlit, the input images contained more complex backgrounds with additional objects such as murals, unlike the training images that only contained wall images.  Also, unlike training process, some wall images were made of bricks, which is something completely unseen by the model. Despite this difference in the input images, the deployed model was able to accurately predict the labels of all the images, including the ones with added noise and complexity in the background. The first three have cracks and the next three don't.
+
+<table>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/122312679/232543486-9f4d2cab-2f40-4d86-9e49-6ce0ee42f259.jpeg" width="250px"></td>
+    <td><img src="https://user-images.githubusercontent.com/122312679/232543591-333ff39f-cf0c-4b75-b76f-a1585e385aa8.jpeg" width="250px"></td>
+    <td><img src="https://user-images.githubusercontent.com/122312679/232543615-02441cba-d1a1-4d69-b64e-6c84cfc1422b.jpeg" width="250px"></td>
+  </tr>
+</table>
+Above three wall images were correctly identified as cracked wall images.
+
+<table>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/122312679/232543631-6c42e75b-2d91-454c-8eb9-b1302cccd1d9.jpeg" width="250px"></td>
+    <td><img src="https://user-images.githubusercontent.com/122312679/232543641-4c4f596e-cdb5-4012-9baa-3f627c8ae911.jpeg" width="250px"></td>
+    <td><img src="https://user-images.githubusercontent.com/122312679/232543656-96577210-9350-476e-8116-b692a576bc3f.jpeg" width="250px"></td>
+  </tr>
+</table>
+Above three wall images were correctly identified as non-cracked wall images.
+
+## Conclusion
+### Final Model's Performance
+- The final model's accuracy of 99.8% is an increase of 6.9% from baseline model's accuracy of 92.9%.
+- The final model's recall of 99.8% is an increase of 10.4% from baseline model's recall of 89.4%
+- Some of wrongly predicted images are difficult for human eyes to judge as well.
+- This model will allow for a near-perfect classification at a tiny fraction of time humans perform the job.
+
+### Recommendations to NYC Department of Buildings
+- Optimize human resources and cut costs by deploying less specialized personnel for inspection tasks that can be simplified through the use of this model. Rather than hiring expensive, over-qualified inspectors, consider deploying less expensive personnel to simply capture images for inspections. This approach will not only significantly cut costs, but also allow for more inspections that are currently behind schedule.
+- Leverage the power of the New York City Department of Buildings to gather more data for building inspections. Since buildings are often private properties, it can be challenging for third-party inspection companies to obtain detailed data. However, by utilizing the lawful power granted to the NYC Department of Buildings, we can gather more 2D and 3D data about buildings, which can be used not only for building inspections, but also for a wide range of future applications that may not yet be fully realized.
+- Use the crack detection model to gather time-series image data for early identification of potential cracks. By monitoring the evolving condition of building walls over time, the inspection company can identify walls that have a higher risk of developing cracks, and take proactive measures to prevent further damage. This can save the building owner significant costs and resources, and enhance the inspection company's reputation as a trusted and reliable service provider. Building a time-series model for building condition prediction can help judge a building not only on the face value of its current status but also on overall degrading pace over time and where it's going.
+
+### Next Steps
+- Collect more diverse data sets, including images taken from various distances and angles, with obstacles present in the background.
+- Train the model on moving images (3D) to expedite the inspection process and provide inspectors with a point-of-view camera to capture images for analysis.
+- Enhance the model's capabilities by expanding it to include the detection of other building features, such as rotting and rat holes.
+- Test the model with a larger and more diverse set of data using the Streamlit platform to evaluate and refine its performance.
+- Incorporate additional training data that includes images that were not previously seen to continue improving the model's accuracy.
+- Create an ensemble model, such as a voting classifier, that combines multiple well-performing models of different types to account for the weaknesses of any single model and improve the accuracy and usefulness of the overall system.
