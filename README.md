@@ -30,7 +30,21 @@ The overall accuracy of a model is undoubtedly crucial, but it's important to co
 
 ### First Model (Baseline)
 ![image](https://user-images.githubusercontent.com/122312679/232525164-7183ac97-6f76-485f-965e-c043950c5761.png)
+First model is a simple convolutional neural network with just a single hidden layer (flattening). Since this is a binary classification the output activation function was sigmoid, and will hold true for all subsequent models. The accuracy of this model on the test data was 0.929, and the recall was 0.894. Having an impressive metric like this out of such a simple model is an indicator that the study should aim at reaching near-perfect metrics when more complicated models are trained.
 
+### Subsequent Models' Architecture
+The following are subsequent models' archituectures:
+- `Second Model`: This model a deep neural network with 4 layers, consisting of 1 convolutional layer with 32 filters, followed by 3 fully connected layers with 128, 64, and 1 neurons respectively. The model also includes batch normalization and dropout layers for regularization to improve accuracy and prevent overfitting. The total number of trainable parameters in the model is approximately 67 million.
+- `Third Model`: Third model was is a much simpler version. It's has same architecture as the first model except it inputs (128, 128, 1) gray-scale images as opposed to color images. This model's purpose was to test whether training can be done much quicker without loss of accuracy.
+- `Fourth Model`: This model loads the VGG16 pre-trained model without the top layer and freezes its convolutional base. Then, it defines a new neural network model with the VGG16 base as a layer, followed by a flatten layer to convert the output of the base into a 1D vector. The model then adds two fully connected dense layers with a dropout layer in between, and finally, a single output sigmoid activation layer. The model is compiled with binary cross-entropy loss, accuracy, and recall as metrics. Early stopping and learning rate scheduling callbacks are defined. Finally, the model is fine-tuned by fitting it on the training data for six epochs and validating on the validation data, using the early stopping and learning rate scheduling callbacks.
+- `Fifth Model`: This model had 3 extra hidden fully-connected layers before the final output compared to the fourth model to retain more information.
+- `Sixth Model`: This model is a replication of the fifth model except that it uses transfer learning from Resnet50 instead of VGG16.
+
+### Subsequent Models' Metrics
+![image](https://user-images.githubusercontent.com/122312679/232550303-41410d3d-2aae-4164-b680-467e07798fb1.png)
+- The dotted vertical line is the average of all recall values.
+- The dotted horizontal line is the average of all accuracy values.
+- Fifth model is absolutely our top performer in all metrics. We will choose it as our final model for deployment.
 
 ## Evaluation
 ### Final Model's Errors on Test Data
