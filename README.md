@@ -30,6 +30,7 @@ The overall accuracy of a model is undoubtedly crucial, but it's important to co
 
 ### First Model (Baseline)
 ![image](https://user-images.githubusercontent.com/122312679/232525164-7183ac97-6f76-485f-965e-c043950c5761.png)
+
 First model is a simple convolutional neural network with just a single hidden layer (flattening). Since this is a binary classification the output activation function was sigmoid, and will hold true for all subsequent models. The accuracy of this model on the test data was 0.929, and the recall was 0.894. Having an impressive metric like this out of such a simple model is an indicator that the study should aim at reaching near-perfect metrics when more complicated models are trained.
 
 ### Subsequent Models' Architecture
